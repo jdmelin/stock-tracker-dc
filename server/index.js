@@ -41,9 +41,9 @@ app.use(userRouter);
 
 const server = http.createServer(app);
 
-app.get('*', (req, res) => {
-  res.redirect('/');
-});
+// app.get('*', (req, res) => {
+//   res.redirect('/');
+// });
 
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
