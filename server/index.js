@@ -1,6 +1,6 @@
 const http = require('http');
 const hostname = '127.0.0.1';
-var cors = require('cors')
+var cors = require('cors');
 const port = process.env.PORT || 8000;
 const path = require('path');
 const accountRouter = require('./routes/account');
@@ -14,11 +14,13 @@ const app = express();
 const db = require('./models');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const store = new SequelizeStore({ db: db.sequelize });
-require('dotenv').config();
+require('dotenv').config({
+  path: '../.env',
+});
 
 store.sync();
 
-app.use(cors())
+app.use(cors());
 app.use(cookieParser());
 app.use(
   session({
