@@ -1,5 +1,4 @@
 const http = require('http');
-const hostname = '127.0.0.1';
 var cors = require('cors');
 const port = process.env.PORT || 8000;
 const path = require('path');
@@ -11,7 +10,7 @@ const express = require('express');
 // const session = require('express-session');
 // const cookieParser = require('cookie-parser');
 const app = express();
-const db = require('./models');
+// const db = require('./models');
 // const SequelizeStore = require('connect-session-sequelize')(session.Store);
 // const store = new SequelizeStore({ db: db.sequelize });
 require('dotenv').config({
@@ -47,6 +46,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/../client/build/index.html'));
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+server.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
