@@ -8,32 +8,32 @@ const indexRouter = require('./routes');
 const stockRouter = require('./routes/stocks');
 const userRouter = require('./routes/users');
 const express = require('express');
-const session = require('express-session');
-const cookieParser = require('cookie-parser');
+// const session = require('express-session');
+// const cookieParser = require('cookie-parser');
 const app = express();
 const db = require('./models');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const store = new SequelizeStore({ db: db.sequelize });
+// const SequelizeStore = require('connect-session-sequelize')(session.Store);
+// const store = new SequelizeStore({ db: db.sequelize });
 require('dotenv').config({
   path: '../.env',
 });
 
-store.sync();
+// store.sync();
 
 app.use(cors());
-app.use(cookieParser());
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    store,
-    cookie: {
-      secure: false,
-      maxAge: 2592000,
-    },
-  })
-);
+// app.use(cookieParser());
+// app.use(
+//   session({
+//     secret: process.env.SESSION_SECRET,
+//     resave: false,
+//     saveUninitialized: true,
+//     store,
+//     cookie: {
+//       secure: false,
+//       maxAge: 2592000,
+//     },
+//   })
+// );
 app.use(express.static(path.join(__dirname, '../client/build')));
 app.use(express.json());
 app.use(accountRouter);
