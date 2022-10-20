@@ -4,7 +4,6 @@ const authenticate = require('../middlewares/authenticate');
 
 router
   .route('/api/stocks/:userId')
-  // .post(stockController.create)
   .get(authenticate, stockController.getAll);
 
 router

@@ -1,21 +1,6 @@
 const { Stock, User, UserStock } = require('../models');
 
 module.exports = {
-  async create(req, res) {
-    const { name, symbol } = req.body;
-
-    try {
-      const newStock = await Stock.create({
-        name,
-        symbol,
-      });
-
-      res.json(newStock);
-    } catch {
-      // handle error
-    }
-  },
-
   async createUserStock(req, res) {
     const { userId } = req.params;
     const { stockId } = req.params;
