@@ -1,15 +1,16 @@
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import { Link, useNavigate } from 'react-router-dom';
-import loginService from '../../services/loginService';
+import userService from '../../services/userService';
 
 function Login({ onSetIsLoggedIn, onSetUserId }) {
   const [credentials, setCredentials] = useState({
     email: '',
     password: '',
   });
+
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -22,7 +23,7 @@ function Login({ onSetIsLoggedIn, onSetUserId }) {
     event.preventDefault();
 
     try {
-      const response = await loginService.logIn(credentials);
+      const response = await userService.logIn(credentials);
       const { message, token, userId } = await response.json();
 
       if (message === 'success') {
@@ -35,6 +36,7 @@ function Login({ onSetIsLoggedIn, onSetUserId }) {
       // handle error
     }
   };
+
   return (
     <Row className="login-container">
       <h1>Log In</h1>
@@ -45,7 +47,7 @@ function Login({ onSetIsLoggedIn, onSetUserId }) {
             name="email"
             onChange={handleChange}
             type="email"
-            placeholder="Enter email"
+            placeholder="Enter Email Address"
           />
         </Form.Group>
         <Form.Group className="mt-3">
@@ -54,7 +56,7 @@ function Login({ onSetIsLoggedIn, onSetUserId }) {
             name="password"
             onChange={handleChange}
             type="password"
-            placeholder="Password"
+            placeholder="Enter Password"
           />
         </Form.Group>
         <Button variant="primary" className="mt-3" type="submit">

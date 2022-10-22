@@ -30,7 +30,6 @@ module.exports = {
     }
   },
 
-  // TODO: Fix register route
   async register(req, res) {
     try {
       await User.create(req.body);
